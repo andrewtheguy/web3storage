@@ -3,7 +3,7 @@
 ## make car file
 
 ```
-cid="bafybeigdmvh2wgmryq5ovlfu4bd3yiljokhzdep7abpe4c4lrf6rukkx4m"ipfs dag export $cid > path/to/output.car
+cid="bafybeigdmvh2wgmryq5ovlfu4bd3yiljokhzdep7abpe4c4lrf6rukkx4m" ipfs dag export $cid > path/to/output.car
 ```
 
 ```
