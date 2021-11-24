@@ -1,3 +1,9 @@
+# upload to web3.storage
+
+```
+ node main.mjs path_to_upload
+```
+
 # web3.storage sample codes
 
 ## make car file
@@ -12,10 +18,4 @@ npx ipfs-car --pack path --output test.car
 
 ```
 curl -X POST "http://127.0.0.1:5001/api/v0/dag/export?arg=cid" > file.car
-```
-
-## upload to web3.storage
-
-```
- node main.mjs path_to_file.car 
 ```

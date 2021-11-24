@@ -1,12 +1,27 @@
 import { Web3Storage } from 'web3.storage'
 import { createReadStream } from 'fs'
-import { CarReader } from '@ipld/car'
+import { CarReader } from '@ipld/car/reader'
+import { CarIndexedReader } from '@ipld/car/indexed-reader'
 import path from 'path';
 import minimist from 'minimist';
+import fs from 'fs'
 
+import { packToStream } from 'ipfs-car/pack/stream'
+import { FsBlockStore } from 'ipfs-car/blockstore/fs'
+import tmp from 'tmp';
 
 const argv = minimist(process.argv.slice(2));
 
+async function pack(inputpath,outputpath){
+
+    const writable = fs.createWriteStream(outputpath)
+    await packToStream({
+      input: inputpath,
+      writable,
+      blockstore: new FsBlockStore()
+    })
+
+}
 
 function getAccessToken() {
     // If you're just testing, you can paste in a token
@@ -25,17 +40,44 @@ function makeStorageClient() {
 }
 
 
-async function storeCarFile(filepath) {
-    const inStream = createReadStream(filepath)
-    const car = await CarReader.fromIterable(inStream)
-    const onStoredChunk = chunkSize => console.log(`stored chunk of ${chunkSize} bytes`)
+async function storeCarFileToWeb3(carpath,name) {
+    let car;
+    try {
+        //car = await CarReader.fromIterable(inStream)
+        car = await CarIndexedReader.fromFile(carpath);
+        const onStoredChunk = chunkSize => console.log(`stored chunk of ${chunkSize} bytes`)
 
-    const extension = path.extname(filepath);
-    const filename = path.basename(filepath,extension);
 
-    const client = makeStorageClient()
-    const cid = await client.putCar(car, { name: filename,onStoredChunk })
-    console.log('Stored CAR file! CID:', cid)
+        const client = makeStorageClient()
+        const cid = await client.putCar(car, { name: name,onStoredChunk })
+        console.log('Stored CAR file! CID:', cid);
+    }finally{
+        if(car) car.close();
+    }
 }
 
-storeCarFile(argv['_'][0])
+
+async function storeLocalPath(inputpath) {
+    let tmpobj;
+    try {
+        tmpobj = tmp.fileSync();
+        //console.error(tmpobj.name)
+        const carpath = tmpobj.name;
+        await pack(inputpath,carpath);
+
+        //const extension = path.extname(inputpath);
+        //const filename = path.basename(inputpath,extension);
+        const filename = path.basename(inputpath);
+        await storeCarFileToWeb3(carpath,filename)
+        
+    }finally{
+        // If we don't need the file anymore we could manually call the removeCallback
+        // But that is not necessary if we didn't pass the keep option because the library
+        // will clean after itself.
+        tmpobj.removeCallback();
+    }
+}
+
+//console.error(argv);
+
+storeLocalPath(argv['_'][0])
