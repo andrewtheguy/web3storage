@@ -1,7 +1,7 @@
 # upload to web3.storage
 
 ```
- node main.mjs path_to_upload
+ node index.mjs path_to_upload
 ```
 
 # web3.storage sample codes
