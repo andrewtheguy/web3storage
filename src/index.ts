@@ -12,7 +12,7 @@ import tmp from 'tmp';
 
 const argv = minimist(process.argv.slice(2));
 
-async function pack(inputpath,outputpath){
+async function pack(inputpath: string,outputpath: string){
 
     const writable = fs.createWriteStream(outputpath)
     await packToStream({
@@ -23,7 +23,7 @@ async function pack(inputpath,outputpath){
 
 }
 
-function getAccessToken() {
+function getAccessToken(): string {
     // If you're just testing, you can paste in a token
     // and uncomment the following line:
     // return 'paste-your-token-here'
@@ -32,7 +32,7 @@ function getAccessToken() {
     // environement variable or other configuration that's kept outside of
     // your code base. For this to work, you need to set the
     // WEB3STORAGE_TOKEN environment variable before you run your code.
-    return process.env.WEB3STORAGE_TOKEN
+    return process.env.WEB3STORAGE_TOKEN || '';
 }
 
 function makeStorageClient() {
@@ -40,12 +40,12 @@ function makeStorageClient() {
 }
 
 
-async function storeCarFileToWeb3(carpath,name) {
+async function storeCarFileToWeb3(carpath: string,name: string) {
     let car;
     try {
         //car = await CarReader.fromIterable(inStream)
         car = await CarIndexedReader.fromFile(carpath);
-        const onStoredChunk = chunkSize => console.log(`stored chunk of ${chunkSize} bytes`)
+        const onStoredChunk = (chunkSize: number) => console.log(`stored chunk of ${chunkSize} bytes`)
 
 
         const client = makeStorageClient()
@@ -57,7 +57,7 @@ async function storeCarFileToWeb3(carpath,name) {
 }
 
 
-async function storeLocalPath(inputpath) {
+async function storeLocalPath(inputpath: string) {
     let tmpobj;
     try {
         tmpobj = tmp.fileSync();
@@ -74,10 +74,12 @@ async function storeLocalPath(inputpath) {
         // If we don't need the file anymore we could manually call the removeCallback
         // But that is not necessary if we didn't pass the keep option because the library
         // will clean after itself.
-        tmpobj.removeCallback();
+        if(tmpobj){
+            tmpobj.removeCallback();
+        }
     }
 }
 
-//console.error(argv);
+console.error(argv);
 
-storeLocalPath(argv['_'][0])
+//storeLocalPath(argv['_'][0])
