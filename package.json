@@ -1,10 +1,10 @@
 {
   "name": "@andrewtheguy/web3storage",
-  "version": "0.0.1-alpha2",
+  "version": "0.0.1-alpha3",
   "main": "dist/index.js",
   "license": "MIT",
   "bin": {
-    "web3storage":"dist/index.js"
+    "web3storage": "dist/index.js"
   },
   "dependencies": {
     "@ipld/car": "^3.1.20",

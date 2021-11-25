@@ -82,6 +82,16 @@ async function storeLocalPath(inputpath: string) {
     }
 }
 
-console.error(argv);
+//console.error(argv);
 
-storeLocalPath(argv['_'][0])
+if (!process.env.WEB3STORAGE_TOKEN) {
+    throw "missing WEB3STORAGE_TOKEN environment variable"
+}
+
+const path = argv['_'][0];
+
+if(!path) {
+    throw "need to specify path"
+}
+
+storeLocalPath(path);
