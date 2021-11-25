@@ -1,6 +1,6 @@
 {
-  "name": "@andrewtheguy/web3storage",
-  "version": "0.0.1-alpha5",
+  "name": "@andrewtheguy/storetoweb3",
+  "version": "0.0.1-alpha1",
   "main": "dist/index.js",
   "license": "MIT",
   "bin": {
