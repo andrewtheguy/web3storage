@@ -95,5 +95,6 @@ const path = argv['_'][0];
 if(!path) {
     throw "need to specify path"
 }
-
-storeLocalPath(path);
+(async () => {
+    await storeLocalPath(path);
+})();
