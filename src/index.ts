@@ -50,11 +50,11 @@ async function storeCarFileToWeb3(carpath: string,name: string) {
         const onStoredChunk = (chunkSize: number) => console.log(`stored chunk of ${chunkSize} bytes`)
 
 
-        const client = makeStorageClient()
+        const client = makeStorageClient();
         const cid = await client.putCar(car, { name: name,onStoredChunk })
         console.log('Stored CAR file! CID:', cid);
     }finally{
-        if(car) car.close();
+        if(car) await car.close();
     }
 }
 
