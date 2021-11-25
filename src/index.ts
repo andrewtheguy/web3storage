@@ -20,7 +20,8 @@ async function pack(inputpath: string,outputpath: string){
     await packToStream({
       input: inputpath,
       writable,
-      blockstore: new FsBlockStore()
+      blockstore: new FsBlockStore(),
+      wrapWithDirectory: false,
     })
 
 }
@@ -47,12 +48,13 @@ async function storeCarFileToWeb3(carpath: string,name: string) {
     try {
         //car = await CarReader.fromIterable(inStream)
         car = await CarIndexedReader.fromFile(carpath);
-        const onStoredChunk = (chunkSize: number) => console.log(`stored chunk of ${chunkSize} bytes`)
+        const onStoredChunk = (chunkSize: number) => console.error(`stored chunk of ${chunkSize} bytes`)
 
 
         const client = makeStorageClient();
         const cid = await client.putCar(car, { name: name,onStoredChunk })
-        console.log('Stored CAR file! CID:', cid);
+        console.error('Stored CAR file! CID:', cid);
+        console.log(cid);
     }finally{
         if(car) await car.close();
     }
@@ -87,8 +89,6 @@ async function storeLocalPath(inputpath: string) {
 if (!process.env.WEB3STORAGE_TOKEN) {
     throw "missing WEB3STORAGE_TOKEN environment variable"
 }
-
-console.error(argv)
 
 const path = argv['_'][0];
 
