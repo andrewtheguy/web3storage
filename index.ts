@@ -82,4 +82,4 @@ async function storeLocalPath(inputpath: string) {
 
 console.error(argv);
 
-//storeLocalPath(argv['_'][0])
+storeLocalPath(argv['_'][0])

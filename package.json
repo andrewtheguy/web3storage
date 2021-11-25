@@ -10,7 +10,7 @@
     "web3.storage": "^3.3.4"
   },
   "scripts": {
-    "start": "npx tsc && node dist/index.js"
+    "start": "ts-node index.ts"
   },
   "devDependencies": {
     "@types/tmp": "^0.2.2",
