@@ -1,6 +1,6 @@
 {
   "name": "@andrewtheguy/storetoweb3",
-  "version": "0.0.1-alpha4",
+  "version": "0.0.1-alpha6",
   "main": "dist/index.js",
   "license": "MIT",
   "bin": {
