@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import minimist from "minimist";
-import { Web3StorageClient } from "./web3storage_client";
+import { Web3StorageClient } from "./lib/web3storage_client";
 
 
 if (!process.env.WEB3STORAGE_TOKEN) {
