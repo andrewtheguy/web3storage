@@ -1,11 +1,14 @@
 {
   "name": "@andrewtheguy/storetoweb3",
-  "version": "0.0.1-alpha2",
+  "version": "0.0.1-alpha3",
   "main": "dist/index.js",
   "license": "MIT",
   "bin": {
     "storetoweb3": "dist/index.js"
   },
+  "files": [
+    "/dist"
+  ],
   "dependencies": {
     "@ipld/car": "^3.1.20",
     "minimist": "^1.2.5",

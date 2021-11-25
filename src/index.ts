@@ -4,7 +4,7 @@ import { Web3Storage } from 'web3.storage'
 import { createReadStream } from 'fs'
 import { CarReader } from '@ipld/car/reader'
 import { CarIndexedReader } from '@ipld/car/indexed-reader'
-import path from 'path';
+import path2 from 'path';
 import minimist from 'minimist';
 import fs from 'fs'
 
@@ -67,9 +67,9 @@ async function storeLocalPath(inputpath: string) {
         const carpath = tmpobj.name;
         await pack(inputpath,carpath);
 
-        //const extension = path.extname(inputpath);
-        //const filename = path.basename(inputpath,extension);
-        const filename = path.basename(inputpath);
+        //const extension = path2.extname(inputpath);
+        //const filename = path2.basename(inputpath,extension);
+        const filename = path2.basename(inputpath);
         await storeCarFileToWeb3(carpath,filename)
         
     }finally{
