@@ -3,9 +3,7 @@
   "version": "0.0.1-alpha9",
   "main": "dist/index.js",
   "license": "MIT",
-  "bin": {
-    "storetoweb3": "dist/index.js"
-  },
+  "bin":  "dist/index.js",
   "files": [
     "/dist"
   ],
