@@ -88,6 +88,8 @@ if (!process.env.WEB3STORAGE_TOKEN) {
     throw "missing WEB3STORAGE_TOKEN environment variable"
 }
 
+console.error(argv)
+
 const path = argv['_'][0];
 
 if(!path) {
