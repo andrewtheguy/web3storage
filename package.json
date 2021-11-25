@@ -1,9 +1,11 @@
 {
-  "name": "@andrewtheguy/storetoweb3",
-  "version": "0.0.1-alpha10",
+  "name": "@andrewtheguy/web3storage",
+  "version": "0.0.1-alpha12",
   "main": "dist/index.js",
   "license": "MIT",
-  "bin": "dist/index.js",
+  "bin": {
+    "storetoweb3": "dist/index.js"
+  },
   "files": [
     "/dist"
   ],
