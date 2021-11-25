@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { Web3Storage } from 'web3.storage'
 import { createReadStream } from 'fs'
 import { CarReader } from '@ipld/car/reader'
