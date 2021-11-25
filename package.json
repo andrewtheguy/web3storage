@@ -1,6 +1,6 @@
 {
   "name": "@andrewtheguy/web3storage",
-  "version": "0.0.1-alpha18",
+  "version": "0.0.1-alpha19",
   "main": "dist/storetoweb3.js",
   "license": "MIT",
   "bin": {
