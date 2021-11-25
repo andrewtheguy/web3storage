@@ -1,6 +1,6 @@
 {
   "name": "@andrewtheguy/web3storage",
-  "version": "0.0.1-alpha20",
+  "version": "0.0.1-alpha23",
   "main": "dist/storetoweb3.js",
   "license": "MIT",
   "bin": {
@@ -19,7 +19,7 @@
     "build": "npx tsc --build --clean && npx tsc --build",
     "watch": "npx tsc -w",
     "start": "node --enable-source-maps dist/storetoweb3.js",
-    "publish": "npm run build && npm publish --access public"
+    "build_and_publish": "npm run build && npm publish --access public"
   },
   "devDependencies": {
     "@types/tmp": "^0.2.2",
