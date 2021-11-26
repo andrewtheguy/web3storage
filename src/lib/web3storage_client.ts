@@ -20,14 +20,14 @@ export class Web3StorageClient {
       }
     
 
-    private async pack(inputpath: string,outputpath: string){
+    private async pack(inputpath: string,outputpath: string, wrap_directory: boolean){
 
         const writable = fs.createWriteStream(outputpath)
         await packToStream({
         input: inputpath,
         writable,
         blockstore: new FsBlockStore(),
-        wrapWithDirectory: false,
+        wrapWithDirectory: wrap_directory,
         })
 
     }
@@ -54,7 +54,7 @@ export class Web3StorageClient {
     }
 
 
-    async storeLocalPath(inputpath: string, name?: string) {
+    async storeLocalPath(inputpath: string, name?: string, wrap_directory: boolean = false) {
         let carpath: any;
         let OFF_DEATH;
         try {
@@ -65,10 +65,10 @@ export class Web3StorageClient {
                 }catch(e){
                     console.error(e);
                 }
-                console.error('death');
+                //console.error('death');
                 process.exit(1);
               })
-            await this.pack(inputpath,carpath);
+            await this.pack(inputpath,carpath,wrap_directory);
             let filename;
             if(name){
                 //const extension = path2.extname(inputpath);
@@ -88,7 +88,7 @@ export class Web3StorageClient {
                 }
             }
             if(OFF_DEATH){
-                console.error('off death')
+                //console.error('off death')
                 OFF_DEATH();
             }
         }
