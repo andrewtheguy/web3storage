@@ -1,6 +1,6 @@
 {
   "name": "@andrewtheguy/web3storage",
-  "version": "0.0.1-alpha25",
+  "version": "0.0.1-alpha26",
   "main": "dist/storetoweb3.js",
   "license": "MIT",
   "bin": {
@@ -11,6 +11,7 @@
   ],
   "dependencies": {
     "@ipld/car": "^3.1.20",
+    "death": "^1.1.0",
     "minimist": "^1.2.5",
     "tmp": "^0.2.1",
     "web3.storage": "^3.3.4"

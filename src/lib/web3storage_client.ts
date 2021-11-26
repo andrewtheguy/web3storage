@@ -9,6 +9,7 @@ import fs from 'fs'
 import { packToStream } from 'ipfs-car/pack/stream'
 import { FsBlockStore } from 'ipfs-car/blockstore/fs'
 import tmp from 'tmp';
+const ON_DEATH = require('death'); //this is intentionally ugly
 
 export class Web3StorageClient {
     //private web3storageToken: string;
@@ -54,11 +55,19 @@ export class Web3StorageClient {
 
 
     async storeLocalPath(inputpath: string, name?: string) {
-        let tmpobj;
+        let carpath: any;
+        let OFF_DEATH;
         try {
-            tmpobj = tmp.fileSync();
-            //console.error(tmpobj.name)
-            const carpath = tmpobj.name;
+            carpath = tmp.tmpNameSync();
+            OFF_DEATH = ON_DEATH(function(signal: any, err: any) {
+                try{
+                    fs.unlinkSync(carpath);
+                }catch(e){
+                    console.error(e);
+                }
+                console.error('death');
+                process.exit(1);
+              })
             await this.pack(inputpath,carpath);
             let filename;
             if(name){
@@ -71,11 +80,16 @@ export class Web3StorageClient {
             await this.storeCarFileToWeb3(carpath,filename);
             
         } finally {
-            // If we don't need the file anymore we could manually call the removeCallback
-            // But that is not necessary if we didn't pass the keep option because the library
-            // will clean after itself.
-            if(tmpobj){
-                tmpobj.removeCallback();
+            if(carpath){
+                try{
+                    fs.unlinkSync(carpath);
+                }catch(e){
+                    console.error(e);
+                }
+            }
+            if(OFF_DEATH){
+                console.error('off death')
+                OFF_DEATH();
             }
         }
     }
