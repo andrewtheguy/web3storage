@@ -20,7 +20,14 @@ npx ipfs-car --pack path --output test.car
 curl -X POST "http://127.0.0.1:5001/api/v0/dag/export?arg=cid" > file.car
 ```
 
-# publish
+# dev
+
+```
+npm run watch
+# in another window
+node dist/storetoweb3.js
+```
+# publish package
 
 ```
 npm run build_and_publish
