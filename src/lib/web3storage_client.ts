@@ -53,18 +53,22 @@ export class Web3StorageClient {
     }
 
 
-    async storeLocalPath(inputpath: string) {
+    async storeLocalPath(inputpath: string, name?: string) {
         let tmpobj;
         try {
             tmpobj = tmp.fileSync();
             //console.error(tmpobj.name)
             const carpath = tmpobj.name;
             await this.pack(inputpath,carpath);
-
-            //const extension = path2.extname(inputpath);
-            //const filename = path2.basename(inputpath,extension);
-            const filename = path2.basename(inputpath);
-            await this.storeCarFileToWeb3(carpath,filename)
+            let filename;
+            if(name){
+                //const extension = path2.extname(inputpath);
+                //const filename = path2.basename(inputpath,extension);
+                filename = name;
+            }else{
+                filename = path2.basename(inputpath);
+            }
+            await this.storeCarFileToWeb3(carpath,filename);
             
         } finally {
             // If we don't need the file anymore we could manually call the removeCallback

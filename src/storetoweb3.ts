@@ -11,6 +11,7 @@ if (!process.env.WEB3STORAGE_TOKEN) {
 const argv = minimist(process.argv.slice(2));
 
 const path = argv['_'][0];
+const name = argv.name;
 
 if(!path) {
     throw "need to specify path"
@@ -18,5 +19,5 @@ if(!path) {
 
 (async () => {
     const client = new Web3StorageClient(process.env.WEB3STORAGE_TOKEN || '');
-    await client.storeLocalPath(path);
+    await client.storeLocalPath(path,name);
 })();
