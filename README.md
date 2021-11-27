@@ -22,7 +22,7 @@ curl -X POST "https://ipfs.io/api/v0/dag/export?arg=cid" > file.car
 
 ## upload the car file
 ```
-npx -p @andrewtheguy/web3storage uploadcartoweb3 path_to_upload.car --name=filename_for_web3.storage  (optional)
+npx -p @andrewtheguy/web3storage uploadcartoweb3 path_to_upload.car --name=filename_for_web3.storage (optional)
 ```
 
 # dev
