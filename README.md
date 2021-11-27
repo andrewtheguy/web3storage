@@ -1,3 +1,5 @@
+requires nodejs 16 or some other ways for unhandled rejection to terminate the program properly
+
 # upload to web3.storage
 
 ```
