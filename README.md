@@ -1,9 +1,13 @@
-requires nodejs 16 or some other ways for unhandled rejection to terminate the program properly
+
 
 # upload to web3.storage
 
 ```
- npx -p @andrewtheguy/web3storage storetoweb3 path_to_upload --name=filename_for_web3.storage (optional) --wrap-directory=yes or no (optional)
+# requires nodejs 16 or some other ways for unhandled rejection to terminate the program properly
+npx -p @andrewtheguy/web3storage storetoweb3 path_to_upload --name=filename_for_web3.storage (optional) --wrap-directory=yes or no (optional)
+ 
+# if you don't have node 16 installed, use the embedded nodejs
+npx -p @andrewtheguy/web3storage node storetoweb3 ...
 ```
 
 # upload existing car file
