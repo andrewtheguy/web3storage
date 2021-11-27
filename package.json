@@ -1,10 +1,11 @@
 {
   "name": "@andrewtheguy/web3storage",
-  "version": "0.0.1-alpha27",
+  "version": "0.0.1-alpha28",
   "main": "dist/storetoweb3.js",
   "license": "MIT",
   "bin": {
-    "storetoweb3": "dist/storetoweb3.js"
+    "storetoweb3": "dist/storetoweb3.js",
+    "uploadcartoweb3": "dist/uploadcartoweb3.js"
   },
   "files": [
     "/dist"
